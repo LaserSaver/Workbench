@@ -1,2 +1,1 @@
-# LaserCutter
-Main Laser Cutter Code
+"Demo Basic Functionality" 
