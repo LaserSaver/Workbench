@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
+import sys
 
-image = 'bw_test.jpg'
+image = sys.argv[1]
 im = cv2.imread(image)
 
 imgray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)

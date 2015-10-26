@@ -1,7 +1,8 @@
 import cv2
+import sys
 
 # Read a grayscale image
-image = 'test.jpg'
+image = sys.argv[1]
 im_gray = cv2.imread(image, cv2.CV_LOAD_IMAGE_GRAYSCALE)
 
 # convert grayscale image to binary (black or white)
