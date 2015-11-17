@@ -13,8 +13,7 @@ def detect(path):
 def box(rects, img):
     for x1, y1, x2, y2 in rects:
         cv2.rectangle(img, (x1, y1), (x2, y2), (127, 255, 0), 2)
-    cv2.imshow('im',img)
-    cv2.waitKey()
+    cv2.imwrite('im.jpg',img)
 
 rects, img = detect("obama.jpg")
 box(rects, img)

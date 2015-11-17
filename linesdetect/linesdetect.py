@@ -18,7 +18,5 @@ for line in lines[0]:
     pt1 = (line[0],line[1])
     pt2 = (line[2],line[3])
     cv2.line(img, pt1, pt2, (0,0,255), 2)
-
 #Displaying results
-cv2.imshow('im',img)
-cv2.waitKey()
+cv2.imwrite('im.jpg',img)

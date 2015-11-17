@@ -12,7 +12,7 @@ gray=cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
 gray=cv2.threshold(gray,20,255,cv2.THRESH_BINARY)[1]
 
 #Displays the threshhold image
-cv2.imshow('gray',gray)
+#cv2.imshow('gray',gray)
 
 #Find contours in the image with the gray removed
 contours,hierarchy = cv2.findContours(gray,cv2.RETR_LIST ,cv2.CHAIN_APPROX_SIMPLE   )
@@ -24,5 +24,5 @@ for cnt in contours:
         cv2.drawContours(im,[cnt],0,(255,0,0),2)
 
 #Displays the modified original image with the contours colored
-cv2.imshow('im',im)
-cv2.waitKey()
+cv2.imwrite('im.jpg',im)
+
