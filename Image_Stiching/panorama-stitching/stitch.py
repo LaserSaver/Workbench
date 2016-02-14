@@ -12,15 +12,15 @@ NOTES:
 	
 	
 '''
-
-# construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-f", "--first", required=True,
-	help="path to the first image")
-ap.add_argument("-s", "--second", required=True,
-	help="path to the second image")
-args = vars(ap.parse_args())
-stitch_images(args["first"], args["second"])
+def main():
+	# construct the argument parse and parse the arguments
+	ap = argparse.ArgumentParser()
+	ap.add_argument("-f", "--first", required=True,
+		help="path to the first image")
+	ap.add_argument("-s", "--second", required=True,
+		help="path to the second image")
+	args = vars(ap.parse_args())
+	stitch_images(args["first"], args["second"])
 
 def stitch_images(name1, name2):
 	''' Stitches 2 images together
@@ -53,3 +53,6 @@ def stitch_images(name1, name2):
 	cv2.imshow("Keypoint Matches", vis)
 	cv2.imshow("Result", result)
 	cv2.waitKey(0)
+
+if __name__ == "__main__":
+	main()
