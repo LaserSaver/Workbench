@@ -23,16 +23,16 @@ args = vars(ap.parse_args())
 stitch_images(args["first"], args["second"])
 
 def stitch_images(name1, name2):
-    ''' Stitches 2 images together
-        
-    Args:
-        name1: Name of first image
-        name2: Name of second image
-    
-    Returns: 
-        None
-    
-    '''
+	''' Stitches 2 images together
+	
+	Args:
+	name1: Name of first image
+	name2: Name of second image
+	
+	Returns: 
+	None
+	
+	'''
 	# load the two images and resize them to have a width of 400 pixels
 	# (for faster processing)
 	imageA = cv2.imread(name1)
