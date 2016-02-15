@@ -9,7 +9,7 @@ import cv2
 
 '''
 NOTES:
-	
+	- You may pass it 2 or 4 images to stitch together
 	
 '''
 def main():
@@ -19,24 +19,36 @@ def main():
 		help="path to the first image")
 	ap.add_argument("-s", "--second", required=True,
 		help="path to the second image")
+	ap.add_argument("-t", "--third", required=False,
+		help="path to the third image")
+	ap.add_argument("-f", "--fourth", required=False,
+		help="path to the fourth image")
 	args = vars(ap.parse_args())
-	stitch_images(args["first"], args["second"])
+	
+	imageA = cv2.imread(args["first"])
+	imageB = cv2.imread(args["second"])
+	
+	
+	result1 = stitch_images(imageA, imageB)
+	if (args["third"] != None and args["fourth"] != None):
+		imageC = cv2.imread(args["third"])
+		imageD = cv2.imread(args["fourth"])
+		result2 = stitch_images(imageC, imageD)
+		stitch_images(result1, result2)
 
-def stitch_images(name1, name2):
+def stitch_images(imageA, imageB):
 	''' Stitches 2 images together
 	
 	Args:
-	name1: Name of first image
-	name2: Name of second image
+	imageA: First image
+	imageB: Second image
 	
 	Returns: 
-	None
+	result: the images stitched together
 	
 	'''
 	# load the two images and resize them to have a width of 400 pixels
 	# (for faster processing)
-	imageA = cv2.imread(name1)
-	imageB = cv2.imread(name2)
 	imageA = imutils.resize(imageA, width=400)
 	imageB = imutils.resize(imageB, width=400)
 	
@@ -47,12 +59,14 @@ def stitch_images(name1, name2):
 	# save the image
 	cv2.imwrite('result.jpg', result)
 	
-	# show the images
-	cv2.imshow("Image A", imageA)
-	cv2.imshow("Image B", imageB)
-	cv2.imshow("Keypoint Matches", vis)
-	cv2.imshow("Result", result)
-	cv2.waitKey(0)
+	# show the images (commented out for using pi through ssh)
+	#cv2.imshow("Image A", imageA)
+	#cv2.imshow("Image B", imageB)
+	#cv2.imshow("Keypoint Matches", vis)
+	#cv2.imshow("Result", result)
+	#cv2.waitKey(0)
+	
+	return result
 
 if __name__ == "__main__":
 	main()
