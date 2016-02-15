@@ -49,8 +49,8 @@ def stitch_images(imageA, imageB):
 	'''
 	# load the two images and resize them to have a width of 400 pixels
 	# (for faster processing)
-	imageA = imutils.resize(imageA, width=400)
-	imageB = imutils.resize(imageB, width=400)
+	imageA = imutils.resize(imageA, width=400, height=400)
+	imageB = imutils.resize(imageB, width=400, height=400)
 	
 	# stitch the images together to create a panorama
 	stitcher = Stitcher()
