@@ -15,13 +15,13 @@ NOTES:
 def main():
 	# construct the argument parse and parse the arguments
 	ap = argparse.ArgumentParser()
-	ap.add_argument("-f", "--first", required=True,
+	ap.add_argument("-1", "--first", required=True,
 		help="path to the first image")
-	ap.add_argument("-s", "--second", required=True,
+	ap.add_argument("-2", "--second", required=True,
 		help="path to the second image")
-	ap.add_argument("-t", "--third", required=False,
+	ap.add_argument("-3", "--third", required=False,
 		help="path to the third image")
-	ap.add_argument("-f", "--fourth", required=False,
+	ap.add_argument("-4", "--fourth", required=False,
 		help="path to the fourth image")
 	args = vars(ap.parse_args())
 	
