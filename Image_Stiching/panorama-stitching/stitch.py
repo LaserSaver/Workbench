@@ -39,14 +39,13 @@ def main():
 		#rotate resulting images
 		rows,cols,_ = result1.shape
 		M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
-		cv2.warpAffine(result1, M, result1.shape, flags=cv2.INTER_LINEAR)
-		result1 = cv2.warpAffine(result1, M, result1.shape, flags=cv2.INTER_LINEAR)
+		result1 = cv2.warpAffine(result1,M,(cols,rows))
 		
 		cv2.imwrite('result1.jpg', result1)
 		
 		rows,cols,_ = result2.shape
 		M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
-		result2 = cv2.warpAffine(result2, M, result2.shape, flags=cv2.INTER_LINEAR)
+		result2 = cv2.warpAffine(result2,M,(cols,rows))
 		
 		cv2.imwrite('result2.jpg', result2)
 		
@@ -54,8 +53,8 @@ def main():
 		cv2.imwrite('rotatedresult.jpg', result)
 		#rotate back
 		rows,cols,_ = result.shape
-		M = cv2.getRotationMatrix2D((cols/2,rows/2),-90,1)
-		result = cv2.warpAffine(result2, M, result2.shape, flags=cv2.INTER_LINEAR)
+		M = cv2.getRotationMatrix2D((cols/2,rows/2),270,1)
+		result = cv2.warpAffine(result,M,(cols,rows))
 		
 		
 		# save the image
