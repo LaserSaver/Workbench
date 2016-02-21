@@ -30,11 +30,27 @@ def main():
 	
 	
 	result1 = stitch_images(imageA, imageB)
+	#rotate resulting images
+	rows,cols = result1.shape
+	M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
+	result1 = cv2.warpAffine(result1,M,(cols,rows))
+	
 	if (args["third"] != None and args["fourth"] != None):
 		imageC = cv2.imread(args["third"])
 		imageD = cv2.imread(args["fourth"])
 		result2 = stitch_images(imageC, imageD)
-		stitch_images(result1, result2)
+		
+		
+		
+		result = stitch_images(result1, result2)
+		
+		#rotate back
+		
+		# save the image
+		cv2.imwrite('result.jpg', result)
+	else:
+		# save the image
+		cv2.imwrite('result1.jpg', result1)
 
 def stitch_images(imageA, imageB):
 	''' Stitches 2 images together
@@ -56,8 +72,7 @@ def stitch_images(imageA, imageB):
 	stitcher = Stitcher()
 	(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
 	
-	# save the image
-	cv2.imwrite('result.jpg', result)
+	
 	
 	# show the images (commented out for using pi through ssh)
 	#cv2.imshow("Image A", imageA)
