@@ -41,12 +41,16 @@ def main():
 		M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
 		result1 = cv2.warpAffine(result1,M,(cols,rows))
 		
+		cv2.imwrite('result1.jpg', result1)
+		
 		rows,cols,_ = result2.shape
 		M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
 		result2 = cv2.warpAffine(result2,M,(cols,rows))
 		
-		result = stitch_images(result1, result2)
+		cv2.imwrite('result2.jpg', result2)
 		
+		result = stitch_images(result1, result2)
+		cv2.imwrite('rotatedresult.jpg', result)
 		#rotate back
 		rows,cols,_ = result.shape
 		M = cv2.getRotationMatrix2D((cols/2,rows/2),-90,1)
