@@ -31,7 +31,7 @@ def main():
 	
 	result1 = stitch_images(imageA, imageB)
 	#rotate resulting images
-	rows,cols = result1.shape
+	rows,cols,_ = result1.shape
 	M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
 	result1 = cv2.warpAffine(result1,M,(cols,rows))
 	
