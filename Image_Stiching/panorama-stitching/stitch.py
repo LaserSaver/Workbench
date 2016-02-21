@@ -30,21 +30,28 @@ def main():
 	
 	
 	result1 = stitch_images(imageA, imageB)
-	#rotate resulting images
-	rows,cols,_ = result1.shape
-	M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
-	result1 = cv2.warpAffine(result1,M,(cols,rows))
 	
 	if (args["third"] != None and args["fourth"] != None):
 		imageC = cv2.imread(args["third"])
 		imageD = cv2.imread(args["fourth"])
 		result2 = stitch_images(imageC, imageD)
 		
+		#rotate resulting images
+		rows,cols,_ = result1.shape
+		M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
+		result1 = cv2.warpAffine(result1,M,(cols,rows))
 		
+		rows,cols,_ = result2.shape
+		M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
+		result2 = cv2.warpAffine(result2,M,(cols,rows))
 		
 		result = stitch_images(result1, result2)
 		
 		#rotate back
+		rows,cols,_ = result.shape
+		M = cv2.getRotationMatrix2D((cols/2,rows/2),-90,1)
+		result = cv2.warpAffine(result,M,(cols,rows))
+		
 		
 		# save the image
 		cv2.imwrite('result.jpg', result)
